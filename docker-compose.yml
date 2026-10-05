@@ -51,6 +51,8 @@ services:
       retries: 10
     networks:
       - app-network
+    ports:
+      - "3307:3306"
 
   frontend:
     container_name: frontend

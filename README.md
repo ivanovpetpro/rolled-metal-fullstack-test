@@ -7,9 +7,11 @@
 docker-compose up --build -d
 bin/console doctrine:database:create
 bin/console doctrine:migrations:migrate --no-interaction
-bin/console doctrine:fixtures:load --no-interaction
+bin/console doctrine:fixtures:load
 ```
 
 ## Порядок разработки
 
 * Создал сборку Docker (Symfony v7.4.20 + PHP 8.2.34)
+* Настроил бандлы и конфигурацию Symfony
+* Настроил БД, создал основные бизнес-сущности, добавил миграцию, фикстуры

@@ -15,6 +15,10 @@
         "symfony/yaml": "7.4.*"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^4.3",
+        "doctrine/doctrine-migrations-bundle": "^3.7",
+        "doctrine/migrations": "^3.9",
+        "fzaninotto/faker": "*"
     },
     "config": {
         "allow-plugins": {
