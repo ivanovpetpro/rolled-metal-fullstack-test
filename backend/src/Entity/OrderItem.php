@@ -11,7 +11,7 @@ class OrderItem
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'items')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private Order $order;
 
     #[ORM\ManyToOne]
@@ -22,5 +22,54 @@ class OrderItem
     private int $quantity;
 
     #[ORM\Column(type: 'decimal', precision: 9, scale: 2)]
-    private float $pricePerUnit;
+    private string $pricePerUnit;
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getOrder(): Order
+    {
+        return $this->order;
+    }
+
+    public function setOrder(Order $order): self
+    {
+        $this->order = $order;
+        return $this;
+    }
+
+    public function getProduct(): Product
+    {
+        return $this->product;
+    }
+
+    public function setProduct(Product $product): self
+    {
+        $this->product = $product;
+        return $this;
+    }
+
+    public function getQuantity(): int
+    {
+        return $this->quantity;
+    }
+
+    public function setQuantity(int $quantity): self
+    {
+        $this->quantity = $quantity;
+        return $this;
+    }
+
+    public function getPricePerUnit(): string
+    {
+        return $this->pricePerUnit;
+    }
+
+    public function setPricePerUnit(string $pricePerUnit): self
+    {
+        $this->pricePerUnit = $pricePerUnit;
+        return $this;
+    }
 }
