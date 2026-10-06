@@ -1,0 +1,158 @@
+{
+  "info": {
+    "_postman_id": "aa745013-98a7-442c-9de4-d8abdf385c8f",
+    "name": "rolled-metal-fullstack-test",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "12078743",
+    "_collection_link": "https://go.postman.co/collection/12078743-aa745013-98a7-442c-9de4-d8abdf385c8f?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "api_products_list",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8080/api/products?category=Электроника&status=active&price_min=10&price_max=100&sort=price&dir=asc&page=1&limit=10",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "products"
+          ],
+          "query": [
+            {
+              "key": "category",
+              "value": "Электроника"
+            },
+            {
+              "key": "status",
+              "value": "active"
+            },
+            {
+              "key": "price_min",
+              "value": "10"
+            },
+            {
+              "key": "price_max",
+              "value": "100"
+            },
+            {
+              "key": "sort",
+              "value": "price"
+            },
+            {
+              "key": "dir",
+              "value": "asc"
+            },
+            {
+              "key": "page",
+              "value": "1"
+            },
+            {
+              "key": "limit",
+              "value": "10"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "api_order_create",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \n    \"dealerId\": 101, \n    \"items\": [ \n        {\n            \"productId\": 15, \n            \"quantity\": 2\n        }, \n        {\n            \"productId\": 42, \n            \"quantity\": 1\n        } \n    ] \n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/orders",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "orders"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "api_order_get",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \n    \"dealerId\": 101, \n    \"items\": [ \n        {\n            \"productId\": 15, \n            \"quantity\": 2\n        }, \n        {\n            \"productId\": 42, \n            \"quantity\": 1\n        } \n    ] \n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/orders/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "orders",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "api_order_status",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{ \n    \"status\": \"processing\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/orders/1/status",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "orders",
+            "1",
+            "status"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}
