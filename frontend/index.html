@@ -1,77 +1,427 @@
-<!doctype html>
-<html lang="en" class="h-100">
+<!DOCTYPE html>
+<html lang="ru">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.84.0">
-    <title>Cover Template · Bootstrap v5.0</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/cover/">
-
-
-
-    <!-- Bootstrap core CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-
-    <!-- Favicons -->
-    <link rel="apple-touch-icon" href="/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-    <link rel="manifest" href="/docs/5.0/assets/img/favicons/manifest.json">
-    <link rel="mask-icon" href="/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
-    <link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
-    <meta name="theme-color" content="#7952b3">
-
+    <title>Каталог металлопроката — Металл Профиль</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Barlow+Condensed:wght@600&display=swap" rel="stylesheet">
     <style>
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
+        :root {
+            --bg: #f0f0f0;
+            --line: #c9c9c9;
+            --line-dark: #9a9a9a;
+            --ink: #1f1f1f;
+            --muted: #6b6b6b;
+            --blue: #4a6f98;
+            --blue-dark: #3b5a7d;
+            --badge-bg: #e3edf7;
         }
+        body { background: var(--bg); color: var(--ink); font-family: "Open Sans", Arial, sans-serif; font-size: 13px; }
 
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
+        .topbar { border-bottom: 2px solid var(--line); padding: 14px 32px; display: flex; align-items: center; gap: 24px; }
+        .logo-mark { width: 28px; height: 28px; border: 1px solid var(--line-dark); display: grid; place-items: center; font-weight: 700; font-size: 13px; color: var(--blue); }
+        .logo-name { font-size: 20px; font-weight: 700; letter-spacing: .2px; }
+        .logo-sub { color: var(--muted); font-size: 12px; border-left: 2px solid var(--line); padding-left: 8px; margin-left: 4px; }
+        .topnav a { color: var(--ink); text-decoration: none; margin-right: 22px; font-size: 14px; }
+        .topnav a.active { color: var(--blue); font-weight: 600; }
+        .dealer { text-align: right; font-size: 12px; line-height: 1.3; }
+        .dealer small { color: var(--muted); font-size: 11px; }
+        .btn-order { background: var(--blue); color: #fff; border: 0; border-radius: 0; padding: 12px 18px; font-weight: 600; font-size: 13px; white-space: nowrap; }
+        .btn-order:hover { background: var(--blue-dark); color: #fff; }
+
+        .page-title { font-size: 32px; font-weight: 700; margin: 30px 0 22px; letter-spacing: -.3px; }
+        .page-title small { font-size: 12px; font-weight: 400; color: var(--muted); margin-left: 10px; letter-spacing: 0; }
+
+        .filters { border: 2px solid var(--line); padding: 14px 16px 16px; position: relative; }
+        .filters h2 { font-size: 18px; font-weight: 700; margin: 4px 0 18px; }
+        .f-label { font-size: 11px; color: var(--muted); margin: 14px 0 6px; display: block; }
+        .f-input { border: 1px solid var(--line); border-radius: 0; background: #e6e6e6; font-size: 12px; padding: 6px 10px; }
+        .f-input:focus { background: #fff; border-color: var(--blue); box-shadow: none; }
+        .cat-row { display: flex; align-items: center; gap: 8px; margin-bottom: 9px; font-size: 12px; }
+        .cat-row .cnt { margin-left: auto; color: var(--muted); font-size: 11px; }
+        .cat-row label { cursor: pointer; flex: 1; display: flex; gap: 8px; align-items: center; margin: 0; }
+        .form-check-input { border-radius: 0; border: 1.5px solid var(--line-dark); background-color: #e9e9e9; margin: 0; width: 14px; height: 14px; }
+        .form-check-input:checked { background-color: var(--blue); border-color: var(--blue); }
+        .btn-apply { background: var(--blue); color: #fff; border-radius: 0; font-weight: 600; font-size: 12px; width: 100%; padding: 9px; border: 0; margin-top: 18px; }
+        .btn-apply:hover { background: var(--blue-dark); color: #fff; }
+        .btn-reset { background: transparent; border: 2px solid var(--line); border-radius: 0; font-weight: 600; font-size: 12px; width: 100%; padding: 8px; margin-top: 8px; }
+        .btn-reset:hover { border-color: var(--line-dark); background: #e8e8e8; }
+
+        .chip { display: inline-flex; align-items: center; gap: 8px; border: 2px solid var(--line); padding: 3px 8px; font-size: 11px; margin-right: 8px; background: transparent; }
+        .chip button { border: 0; background: none; padding: 0; font-size: 13px; line-height: 1; color: var(--ink); }
+        .chip-reset { color: var(--blue); font-size: 11px; background: none; border: 0; padding: 0; }
+        .sort-label { color: var(--muted); font-size: 11px; margin-right: 8px; }
+        .sort-select { width: auto; display: inline-block; border: 2px solid var(--line); border-radius: 0; font-size: 12px; background-color: var(--bg); padding: 4px 30px 4px 10px; }
+        .view-toggle { display: inline-flex; border: 2px solid var(--line); margin-left: 16px; }
+        .view-toggle button { border: 0; background: transparent; font-size: 12px; padding: 6px 12px; display: flex; align-items: center; gap: 6px; }
+        .view-toggle button.active { background: var(--blue); color: #fff; }
+
+        .p-card { border: 2px solid var(--line); background: var(--bg); height: 100%; display: flex; flex-direction: column; position: relative; }
+        .p-photo { height: 160px; position: relative; border-bottom: 2px solid var(--line);
+            background: repeating-linear-gradient(135deg, #e6e6ea 0 22px, #dcdce1 22px 44px);
+            display: grid; place-items: center; font-size: 8px; letter-spacing: 1px; color: #8a8a8a; }
+        .badge-stock { position: absolute; top: 8px; left: 8px; background: var(--badge-bg); color: var(--blue); font-size: 9px; padding: 3px 7px; }
+        .badge-stock.out { background: #fff; border: 2px solid var(--blue); padding: 1px 5px; }
+        .p-body { padding: 14px 10px 12px; display: flex; flex-direction: column; flex: 1; }
+        .p-sku { font-size: 9px; letter-spacing: .6px; color: var(--muted); margin-bottom: 8px; }
+        .p-name { font-size: 17px; font-weight: 600; line-height: 1.15; margin: 0 0 4px; }
+        .p-cat { font-size: 10px; color: var(--muted); margin-bottom: 18px; }
+        .p-price-row { display: flex; align-items: baseline; margin-top: auto; margin-bottom: 8px; }
+        .p-price { font-family: "Barlow Condensed", "Open Sans", sans-serif; font-weight: 600; font-size: 21px; }
+        .p-unit { font-size: 10px; color: var(--muted); margin-left: 3px; }
+        .p-rest { margin-left: auto; font-size: 10px; color: var(--muted); }
+        .p-actions { display: flex; gap: 6px; }
+        .qty { display: flex; align-items: center; border: 2px solid var(--line); height: 30px; }
+        .qty button { border: 0; background: none; width: 24px; font-size: 14px; line-height: 1; }
+        .qty input { width: 38px; border: 0; background: none; text-align: center; font-size: 11px; padding: 0; }
+        .qty input:focus { outline: none; }
+        .btn-add { flex: 1; background: var(--blue); color: #fff; border: 0; border-radius: 0; font-weight: 600; font-size: 12px; height: 30px; }
+        .btn-add:hover { background: var(--blue-dark); }
+        .btn-add:disabled { background: transparent; color: var(--ink); border: 2px solid var(--line); }
+
+        .p-table { width: 100%; border: 2px solid var(--line); border-collapse: collapse; }
+        .p-table th { font-size: 11px; font-weight: 600; color: var(--muted); border-bottom: 2px solid var(--line); padding: 8px 10px; text-align: left; }
+        .p-table td { padding: 8px 10px; border-bottom: 1px solid var(--line); vertical-align: middle; font-size: 12px; }
+        .p-table .qty { width: 100px; }
+
+        .state-box { border: 2px dashed var(--line); padding: 40px; text-align: center; color: var(--muted); }
+        .pagination .page-link { border-radius: 0; border: 2px solid var(--line); background: transparent; color: var(--ink); font-size: 12px; margin-right: 4px; }
+        .pagination .active .page-link { background: var(--blue); border-color: var(--blue); color: #fff; }
+        .pagination .disabled .page-link { opacity: .45; }
+        .loading { opacity: .5; pointer-events: none; transition: opacity .15s; }
+        :focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
     </style>
-
-
-    <!-- Custom styles for this template -->
-    <link href="https://getbootstrap.com/docs/5.0/examples/cover/cover.css" rel="stylesheet">
 </head>
-<body class="d-flex h-100 text-center text-white bg-dark">
+<body>
 
-<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
-    <header class="mb-auto">
-        <div>
-            <h3 class="float-md-start mb-0">Cover</h3>
-            <nav class="nav nav-masthead justify-content-center float-md-end">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                <a class="nav-link" href="#">Features</a>
-                <a class="nav-link" href="#">Contact</a>
-            </nav>
+<header class="topbar flex-wrap">
+    <div class="d-flex align-items-center gap-2">
+        <div class="logo-mark">МП</div>
+        <span class="logo-name">Металл Профиль</span>
+        <span class="logo-sub">Кабинет дилера</span>
+    </div>
+    <nav class="topnav">
+        <a href="#" class="active">Каталог</a><a href="#">Заказы</a><a href="#">Документы</a>
+    </nav>
+    <div class="ms-auto d-flex align-items-center gap-4">
+        <div class="dealer">ООО «СтройКомплект»<br><small>Дилер № 2087</small></div>
+        <button class="btn-order" id="orderBtn" type="button">🛒 Заказ · 0 поз. · 0 ₽</button>
+    </div>
+</header>
+
+<main class="px-4 pb-5">
+    <h1 class="page-title">Каталог металлопроката <small id="totalLabel"></small></h1>
+
+    <div class="row g-4">
+        <!-- Фильтры -->
+        <aside class="col-lg-3 col-xl-2" style="min-width:260px">
+            <div class="filters">
+                <h2>Фильтры</h2>
+
+                <span class="f-label">Поиск по наименованию и артикулу</span>
+                <input type="search" id="fSearch" class="form-control f-input" placeholder="Например, А500С или 40×20">
+
+                <span class="f-label">Категория</span>
+                <div id="catList"></div>
+
+                <span class="f-label">Цена, ₽ за единицу</span>
+                <div class="d-flex gap-2">
+                    <input type="number" min="0" id="fPriceMin" class="form-control f-input" placeholder="от">
+                    <input type="number" min="0" id="fPriceMax" class="form-control f-input" placeholder="до">
+                </div>
+
+                <span class="f-label">Статус</span>
+                <div id="statusList"></div>
+
+                <button class="btn-apply" id="applyBtn" type="button">Применить</button>
+                <button class="btn-reset" id="resetBtn" type="button">Сбросить</button>
+            </div>
+        </aside>
+
+        <section class="col">
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-3">
+                <div id="chips" class="d-flex flex-wrap align-items-center"></div>
+                <div class="ms-auto d-flex align-items-center">
+                    <span class="sort-label">Сортировка</span>
+                    <select id="sortSel" class="form-select sort-select">
+                        <option value="price|asc">Сначала дешевле</option>
+                        <option value="price|desc">Сначала дороже</option>
+                        <option value="name|asc">По названию А–Я</option>
+                        <option value="name|desc">По названию Я–А</option>
+                    </select>
+                    <div class="view-toggle">
+                        <button type="button" data-view="cards" class="active">▦ Карточки</button>
+                        <button type="button" data-view="table">☰ Таблица</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="content"></div>
+            <nav class="mt-4"><ul class="pagination" id="pager"></ul></nav>
+        </section>
+    </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+<script>
+    $(function () {
+
+        const API_URL = 'http://localhost:8080/api/products';
+        const PAGE_LIMIT = 12;
+        const FETCH_LIMIT = 100;
+        const CATEGORIES = ['Арматура', 'Трубы профильные', 'Трубы круглые', 'Листовой прокат',
+            'Уголок', 'Швеллер', 'Балка', 'Круг и квадрат'];
+        const STATUSES = [
+            { label: 'В наличии',     value: 'active' },
+            { label: 'Нет в наличии', value: 'out_of_stock' },
+            { label: 'Архив',         value: 'archived' }
+        ];
+
+        const state = {
+            filters: { search: '', categories: ['Арматура', 'Трубы профильные'], priceMin: '', priceMax: '90000', statuses: ['active'] },
+            sort: 'price', dir: 'asc', page: 1, view: 'cards'
+        };
+        const cart = {};
+        let items = [];
+        let reqId = 0;
+
+        const esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+        const nf = new Intl.NumberFormat('ru-RU', { maximumFractionDigits: 2 });
+        const fmt = n => nf.format(n);
+        const plural = (n, a, b, c) => { n = Math.abs(n) % 100; const d = n % 10; return (n > 10 && n < 20) ? c : d > 1 && d < 5 ? b : d === 1 ? a : c; };
+
+        function renderSidebar() {
+            $('#catList').html(CATEGORIES.map((c, i) => `
+      <div class="cat-row">
+        <label><input class="form-check-input fcat" type="checkbox" value="${esc(c)}" ${state.filters.categories.includes(c) ? 'checked' : ''}> ${esc(c)}</label>
+        <span class="cnt" data-cnt="${esc(c)}"></span>
+      </div>`).join(''));
+            $('#statusList').html(STATUSES.map(s => `
+      <div class="cat-row"><label><input class="form-check-input fstat" type="checkbox" value="${s.value}" ${state.filters.statuses.includes(s.value) ? 'checked' : ''}> ${s.label}</label></div>`).join(''));
+            $('#fSearch').val(state.filters.search);
+            $('#fPriceMin').val(state.filters.priceMin);
+            $('#fPriceMax').val(state.filters.priceMax);
+        }
+
+        function loadCategoryCounts() {
+            CATEGORIES.forEach(c => {
+                $.getJSON(API_URL, { category: c, page: 1, limit: 1 })
+                    .done(r => $(`[data-cnt="${c}"]`).text(r.pagination.total_items))
+                    .fail(() => {});
+            });
+        }
+
+        function readForm() {
+            state.filters = {
+                search: $('#fSearch').val().trim(),
+                categories: $('.fcat:checked').map((_, e) => e.value).get(),
+                priceMin: $('#fPriceMin').val(),
+                priceMax: $('#fPriceMax').val(),
+                statuses: $('.fstat:checked').map((_, e) => e.value).get()
+            };
+        }
+
+        function renderChips() {
+            const f = state.filters, chips = [];
+            f.categories.forEach(c => chips.push({ t: c, k: 'cat', v: c }));
+            if (f.priceMin !== '') chips.push({ t: 'от ' + fmt(f.priceMin) + ' ₽', k: 'min' });
+            if (f.priceMax !== '') chips.push({ t: 'до ' + fmt(f.priceMax) + ' ₽', k: 'max' });
+            if (f.search) chips.push({ t: '«' + f.search + '»', k: 'search' });
+            $('#chips').html(chips.map(c => `<span class="chip">${esc(c.t)} <button type="button" aria-label="Убрать фильтр" data-k="${c.k}" data-v="${esc(c.v || '')}">×</button></span>`).join('')
+                + (chips.length ? '<button type="button" class="chip-reset" id="chipsReset">Сбросить все</button>' : ''));
+        }
+
+        function buildQueries() {
+            const f = state.filters;
+            const cats = f.categories.length ? f.categories : [null];
+            const sts = f.statuses.length && f.statuses.length < STATUSES.length ? f.statuses : [null];
+            const qs = [];
+            cats.forEach(c => sts.forEach(s => {
+                const q = {};
+                if (c) q.category = c;
+                if (s) q.status = s;
+                if (f.priceMin !== '') q.price_min = f.priceMin;
+                if (f.priceMax !== '') q.price_max = f.priceMax;
+                qs.push(q);
+            }));
+            return qs;
+        }
+
+        function fetchAll(q) {
+            const d = $.Deferred(), acc = [];
+            (function next(page) {
+                $.getJSON(API_URL, Object.assign({}, q, { sort: state.sort, dir: state.dir, page, limit: FETCH_LIMIT }))
+                    .done(r => {
+                        acc.push(...r.items);
+                        page < r.pagination.total_pages ? next(page + 1) : d.resolve(acc);
+                    }).fail(d.reject);
+            })(1);
+            return d.promise();
+        }
+
+        function load() {
+            const my = ++reqId, qs = buildQueries(), search = state.filters.search.toLowerCase();
+            $('#content').addClass('loading');
+
+            let p;
+            if (qs.length === 1 && !search) {
+                p = $.getJSON(API_URL, Object.assign({}, qs[0], { sort: state.sort, dir: state.dir, page: state.page, limit: PAGE_LIMIT }))
+                    .then(r => ({ items: r.items, total: r.pagination.total_items, pages: r.pagination.total_pages }));
+            } else {
+                p = $.when.apply($, qs.map(fetchAll)).then(function () {
+                    const lists = qs.length === 1 ? [arguments[0]] : Array.from(arguments);
+                    const map = new Map();
+                    lists.flat().forEach(it => map.set(it.id, it));
+                    let all = [...map.values()];
+                    if (search) all = all.filter(it => (it.name + ' ' + it.sku).toLowerCase().includes(search));
+                    const k = state.sort, m = state.dir === 'asc' ? 1 : -1;
+                    all.sort((a, b) => (k === 'price' ? a.price - b.price : String(a.name).localeCompare(b.name, 'ru')) * m);
+                    const pages = Math.max(1, Math.ceil(all.length / PAGE_LIMIT));
+                    const page = Math.min(state.page, pages);
+                    return { items: all.slice((page - 1) * PAGE_LIMIT, page * PAGE_LIMIT), total: all.length, pages };
+                });
+            }
+
+            p.done(r => {
+                if (my !== reqId) return;
+                items = r.items;
+                $('#totalLabel').text(fmt(r.total) + ' ' + plural(r.total, 'товар', 'товара', 'товаров'));
+                renderItems();
+                renderPager(r.pages);
+            }).fail(() => {
+                if (my !== reqId) return;
+                $('#totalLabel').text('');
+                $('#content').html('<div class="state-box">Не удалось загрузить каталог. Проверьте, что сервер запущен на ' + esc(API_URL) + ', и повторите попытку.</div>');
+                $('#pager').empty();
+            }).always(() => { if (my === reqId) $('#content').removeClass('loading'); });
+        }
+
+        const inStock = it => it.status === 'active' && it.stock > 0;
+
+        function qtyBlock(it) {
+            return `<div class="qty"><button type="button" class="q-minus" aria-label="Меньше">−</button>
+      <input type="text" class="q-val" value="1 ${esc(it.unit)}" data-unit="${esc(it.unit)}" aria-label="Количество">
+      <button type="button" class="q-plus" aria-label="Больше">+</button></div>`;
+        }
+
+        function cardHtml(it) {
+            const ok = inStock(it);
+            return `<div class="col-12 col-sm-6 col-xl-4 col-xxl-3">
+      <article class="p-card" data-id="${it.id}">
+        <div class="p-photo">ФОТО ТОВАРА · DUOTONE
+          <span class="badge-stock ${ok ? '' : 'out'}">${ok ? 'В наличии' : 'Нет в наличии'}</span></div>
+        <div class="p-body">
+          <div class="p-sku">${esc(it.sku)}</div>
+          <h3 class="p-name">${esc(it.name)}</h3>
+          <div class="p-cat">${esc(it.category)}</div>
+          <div class="p-price-row">
+            <span class="p-price">${fmt(it.price)} ₽</span><span class="p-unit">/ ${esc(it.unit)}</span>
+            <span class="p-rest">${ok ? 'Остаток ' + fmt(it.stock) + ' ' + esc(it.unit) : (it.status === 'archived' ? 'Архив' : 'Ожидается')}</span>
+          </div>
+          <div class="p-actions">
+            ${ok ? qtyBlock(it) + '<button type="button" class="btn-add">В заказ</button>'
+                : '<button type="button" class="btn-add" disabled>Нет в наличии</button>'}
+          </div>
         </div>
-    </header>
+      </article></div>`;
+        }
 
-    <main class="px-3">
-        <h1>Cover your page.</h1>
-        <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
-        <p class="lead">
-            <a href="#" class="btn btn-lg btn-secondary fw-bold border-white bg-white">Learn more</a>
-        </p>
-    </main>
+        function rowHtml(it) {
+            const ok = inStock(it);
+            return `<tr data-id="${it.id}">
+      <td>${esc(it.sku)}</td><td><strong>${esc(it.name)}</strong></td><td>${esc(it.category)}</td>
+      <td>${fmt(it.price)} ₽ / ${esc(it.unit)}</td>
+      <td>${ok ? fmt(it.stock) + ' ' + esc(it.unit) : (it.status === 'archived' ? 'Архив' : 'Ожидается')}</td>
+      <td>${ok ? qtyBlock(it) : ''}</td>
+      <td>${ok ? '<button type="button" class="btn-add px-3">В заказ</button>' : '<button type="button" class="btn-add px-3" disabled>Нет в наличии</button>'}</td></tr>`;
+        }
 
-    <footer class="mt-auto text-white-50">
-        <p>Cover template for <a href="https://getbootstrap.com/" class="text-white">Bootstrap</a>, by <a href="https://twitter.com/mdo" class="text-white">@mdo</a>.</p>
-    </footer>
-</div>
+        function renderItems() {
+            if (!items.length) {
+                $('#content').html('<div class="state-box">Ничего не найдено. Измените фильтры или нажмите «Сбросить».</div>');
+                return;
+            }
+            $('#content').html(state.view === 'cards'
+                ? '<div class="row g-4">' + items.map(cardHtml).join('') + '</div>'
+                : `<div class="table-responsive"><table class="p-table"><thead><tr><th>Артикул</th><th>Наименование</th><th>Категория</th><th>Цена</th><th>Остаток</th><th>Кол-во</th><th></th></tr></thead><tbody>${items.map(rowHtml).join('')}</tbody></table></div>`);
+        }
 
+        function renderPager(pages) {
+            if (pages <= 1) { $('#pager').empty(); return; }
+            const cur = state.page, set = new Set([1, pages, cur - 1, cur, cur + 1]);
+            const nums = [...set].filter(n => n >= 1 && n <= pages).sort((a, b) => a - b);
+            let html = `<li class="page-item ${cur === 1 ? 'disabled' : ''}"><a class="page-link" href="#" data-p="${cur - 1}">‹</a></li>`;
+            nums.forEach((n, i) => {
+                if (i && n - nums[i - 1] > 1) html += '<li class="page-item disabled"><span class="page-link">…</span></li>';
+                html += `<li class="page-item ${n === cur ? 'active' : ''}"><a class="page-link" href="#" data-p="${n}">${n}</a></li>`;
+            });
+            html += `<li class="page-item ${cur === pages ? 'disabled' : ''}"><a class="page-link" href="#" data-p="${cur + 1}">›</a></li>`;
+            $('#pager').html(html);
+        }
 
+        function updateCart() {
+            const ids = Object.keys(cart);
+            const sum = ids.reduce((s, id) => s + cart[id].price * cart[id].qty, 0);
+            $('#orderBtn').text(`🛒 Заказ · ${ids.length} поз. · ${fmt(Math.round(sum))} ₽`);
+        }
+
+        const readQty = $inp => Math.max(1, parseFloat(String($inp.val()).replace(',', '.')) || 1);
+        const setQty = ($inp, v) => $inp.val(fmt(Math.max(1, v)) + ' ' + $inp.data('unit'));
+
+        function apply() { readForm(); state.page = 1; renderChips(); load(); }
+
+        $('#applyBtn').on('click', apply);
+        $('#fSearch, #fPriceMin, #fPriceMax').on('keydown', e => { if (e.key === 'Enter') apply(); });
+
+        $('#resetBtn').on('click', function () {
+            state.filters = { search: '', categories: [], priceMin: '', priceMax: '', statuses: ['active'] };
+            state.page = 1; renderSidebar(); renderChips(); load();
+        });
+
+        $('#chips').on('click', 'button[data-k]', function () {
+            const k = $(this).data('k'), v = $(this).attr('data-v'), f = state.filters;
+            if (k === 'cat') f.categories = f.categories.filter(c => c !== v);
+            if (k === 'min') f.priceMin = '';
+            if (k === 'max') f.priceMax = '';
+            if (k === 'search') f.search = '';
+            state.page = 1; renderSidebar(); renderChips(); load();
+        }).on('click', '#chipsReset', () => $('#resetBtn').click());
+
+        $('#sortSel').on('change', function () {
+            [state.sort, state.dir] = this.value.split('|'); state.page = 1; load();
+        });
+
+        $('.view-toggle button').on('click', function () {
+            state.view = $(this).data('view');
+            $('.view-toggle button').removeClass('active'); $(this).addClass('active');
+            renderItems();
+        });
+
+        $('#pager').on('click', 'a[data-p]', function (e) {
+            e.preventDefault();
+            if ($(this).parent().is('.disabled, .active')) return;
+            state.page = +$(this).data('p'); load();
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        $('#content')
+            .on('click', '.q-plus', function () { const $i = $(this).siblings('.q-val'); setQty($i, readQty($i) + 1); })
+            .on('click', '.q-minus', function () { const $i = $(this).siblings('.q-val'); setQty($i, readQty($i) - 1); })
+            .on('change', '.q-val', function () { setQty($(this), readQty($(this))); })
+            .on('click', '.btn-add:not(:disabled)', function () {
+                const $box = $(this).closest('[data-id]'), id = $box.data('id');
+                const it = items.find(x => x.id === id), qty = readQty($box.find('.q-val'));
+                cart[id] = { price: it.price, qty: (cart[id] ? cart[id].qty : 0) + qty };
+                updateCart();
+            });
+
+        renderSidebar();
+        renderChips();
+        updateCart();
+        loadCategoryCounts();
+        load();
+    });
+</script>
 </body>
 </html>
-

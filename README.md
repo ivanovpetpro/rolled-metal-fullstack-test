@@ -10,6 +10,18 @@ bin/console doctrine:migrations:migrate --no-interaction
 bin/console doctrine:fixtures:load
 ```
 
+```bash
+docker-compose up --build -d
+```
+
+### frontend
+SPA страницы каталога доступно по адресу http://localhost:3000
+
+### backend
+API доступно по адресу http://localhost:8080. Все эндпоинты описаны в файле postman_collection.json в корне проекта.
+
+
+
 ## Порядок разработки
 
 ### backend
@@ -19,3 +31,6 @@ bin/console doctrine:fixtures:load
 * Настроил БД, создал основные бизнес-сущности, добавил миграцию, фикстуры
 * Создал контроллеры и API эндпоинты
 * Добавил Postman коллекцию API
+
+### frontend
+* Реализовал SPA каталога, настроил CORS

@@ -22,7 +22,16 @@ class ProductFixture extends Fixture
 
             $sku = 'SKU-' . strtoupper($this->faker->bothify('??##'));
             $name = $this->faker->word . ' ' . $this->faker->word . ' ' . $this->faker->word;
-            $category = $this->faker->randomElement(['Электроника', 'Одежда', 'Книги']);
+            $category = $this->faker->randomElement([
+                'Арматура',
+                'Трубы профильные',
+                'Трубы круглые',
+                'Листовой прокат',
+                'Уголок',
+                'Швеллер',
+                'Балка',
+                'Круг и квадрат'
+            ]);
             $price = $this->faker->numberBetween(500, 10000) / 100;
             $stock = $this->faker->numberBetween(0, 100);
             $unit = 'шт';
